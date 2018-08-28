@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Thecodework\TwoFactorAuthentication\AuthenticatesUsersWith2FA;
 
 class LoginController extends Controller
 {
@@ -18,8 +19,9 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
-
+    use AuthenticatesUsers, AuthenticatesUsersWith2FA {
+        AuthenticatesUsersWith2FA::authenticated insteadof AuthenticatesUsers;
+    }
     /**
      * Where to redirect users after login.
      *
